@@ -12,13 +12,7 @@ const indexRouter = require('./routes/index'),
 const mongoose   = require('mongoose'),
      urltest = `mongodb://localhost:27017/livecode29oktober`
 
-if (process.env.NODE_ENV === 'test') {
-  console.log('ready to test our server')
-  mongoose.connect(urltest,{ useNewUrlParser: true })
-} else {
-  console.log('ready to deploy our server')
-  mongoose.connect(urltest,{ useNewUrlParser: true })
-}
+mongoose.connect(urltest,{ useNewUrlParser: true })
     
 var db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))

@@ -2,7 +2,21 @@ const Video = require('../models/videos')
 const mongoose = require('mongoose')
 
 module.exports = {
-  
+  sortedLikedVideo:(req,res)=>{
+    voterId=req.user.id
+    Video.find({}).sort({likes: 1})
+      .populate('likes')
+      .then(videos => {
+        res.status(200).json({
+          videos
+        })
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: err.message
+        })
+      })
+  },
   getAllVid: (req, res) => {
     voterId=req.user.id
     Video.find({
